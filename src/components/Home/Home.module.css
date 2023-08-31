@@ -1,6 +1,6 @@
 .home {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 100px;
   }
   
@@ -27,11 +27,7 @@
     max-width: 400px;
   }
   
-  .movieItem:hover .moviePoster {
-    left: 0;
-    opacity: 1;
-  }
   h3 {
     margin-top: 0px;
-      margin-bottom: 0px;
+    margin-bottom: 0px;
   }
