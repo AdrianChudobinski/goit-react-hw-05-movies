@@ -4,12 +4,10 @@ import { getMovieCredits } from 'services/Api';
 const Cast = ({ match }) => {
   const [cast, setCast] = useState([]);
 
-  const movieId = match.params.movieId;
-
   useEffect(() => {
     const fetchMovieCredits = async () => {
       try {
-        const response = await getMovieCredits(movieId);
+        const response = await getMovieCredits(match.params.movieId);
         setCast(response.cast);
       } catch (error) {
         console.log('Error fetching movie credits:', error);
@@ -17,7 +15,7 @@ const Cast = ({ match }) => {
     };
 
     fetchMovieCredits();
-  }, [movieId]);
+  }, [match.params.movieId]);
 
   return (
     <div>

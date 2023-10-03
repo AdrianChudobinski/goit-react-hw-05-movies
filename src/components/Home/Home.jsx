@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getTrendingMovies } from 'services/Api';
-
 import css from './Home.module.css';
 
 const Home = () => {
@@ -13,10 +12,7 @@ const Home = () => {
         const response = await getTrendingMovies();
         setMovies(response.results);
       } catch (error) {
-        console.log(
-          'Wystąpił błąd podczas pobierania popularnych filmów:',
-          error
-        );
+        console.log('Error fetching trending movies:', error);
       }
     };
 
@@ -27,10 +23,7 @@ const Home = () => {
     <div className={css.home}>
       <h1>Popularne filmy</h1>
       {movies.map(movie => (
-        <div
-          key={movie.id}
-          className={css.movieItem}
-        >
+        <div key={movie.id} className={css.movieItem}>
           <Link to={`/movies/${movie.id}`} className={css.movieLink}>
             <h3>{movie.title}</h3>
           </Link>

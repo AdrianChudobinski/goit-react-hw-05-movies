@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getMovieReviews } from 'services/Api';
 
 const Reviews = ({ match }) => {
+  const movieId = match.params.movieId;
   const [reviews, setReviews] = useState([]);
 
-  const movieId = match.params.movieId;
-
   useEffect(() => {
-    const fetchMovieReviews = async () => {
+    const fetchReviews = async () => {
       try {
         const response = await getMovieReviews(movieId);
         setReviews(response.results);
@@ -16,16 +15,16 @@ const Reviews = ({ match }) => {
       }
     };
 
-    fetchMovieReviews();
+    fetchReviews();
   }, [movieId]);
 
   return (
     <div>
       <h2>Reviews</h2>
-      {reviews.map(review => (
-        <div key={review.id}>
-          <h4>{review.author}</h4>
-          <p>{review.content}</p>
+      {reviews.map(({ id, author, content }) => (
+        <div key={id}>
+          <h4>{author}</h4>
+          <p>{content}</p>
         </div>
       ))}
     </div>
